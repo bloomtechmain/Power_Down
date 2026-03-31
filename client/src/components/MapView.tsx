@@ -50,20 +50,33 @@ export const MapView = forwardRef<MapViewRef, MapViewProps>(({ position, cluster
     }
   }));
 
+  const SRI_LANKA_CENTER = { lat: 7.8731, lng: 80.7718 };
+  const SRI_LANKA_BOUNDS = {
+    north: 9.9,
+    south: 5.7,
+    east: 82.0,
+    west: 79.4,
+  };
+
   const createMap = useCallback(() => {
     if (!mapRef.current || mapInstanceRef.current) return;
 
-    const center = position || { lat: 30.35, lng: -97.68 };
+    const center = position || SRI_LANKA_CENTER;
+    const zoom = position ? 14 : 8;
     mapInstanceRef.current = new google.maps.Map(mapRef.current, {
       center,
-      zoom: 14,
+      zoom,
       styles: MAP_STYLES,
       disableDefaultUI: true,
       zoomControl: false,
       gestureHandling: 'greedy',
-      minZoom: 4,
+      minZoom: 7,
       maxZoom: 18,
       backgroundColor: '#f7f7f7',
+      restriction: {
+        latLngBounds: SRI_LANKA_BOUNDS,
+        strictBounds: false,
+      },
     });
 
     mapInstanceRef.current.addListener('zoom_changed', () => {

@@ -46,7 +46,7 @@ export function useLocation() {
   const requestLocation = useCallback(() => {
     if (!navigator.geolocation) {
       setError('Geolocation not supported');
-      setPosition({ lat: 30.35, lng: -97.68 });
+      setPosition({ lat: 7.8731, lng: 80.7718 }); // Default: Sri Lanka
       return;
     }
 
@@ -63,7 +63,7 @@ export function useLocation() {
       },
       (err) => {
         setError(err.message);
-        setPosition({ lat: 30.35, lng: -97.68 });
+        setPosition({ lat: 7.8731, lng: 80.7718 }); // Default: Sri Lanka
         setLoading(false);
       },
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
