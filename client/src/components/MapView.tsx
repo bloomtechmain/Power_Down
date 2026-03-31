@@ -180,14 +180,15 @@ export const MapView = forwardRef<MapViewRef, MapViewProps>(({ position, cluster
 
       let circle: google.maps.Circle | null = null;
       if (heatmapVisible) {
-        // Red zone circle
+        const isMaintenance = cluster.reasons.length > 0 && cluster.reasons.every(r => r === 'maintenance');
+        const circleColor = isMaintenance ? '#facc15' : '#ef4444';
         circle = new google.maps.Circle({
           map,
           center: pos,
           radius: cluster.radius,
-          fillColor: '#ef4444',
+          fillColor: circleColor,
           fillOpacity: Math.min(0.1 + cluster.intensity * 0.05, 0.45),
-          strokeColor: '#ef4444',
+          strokeColor: circleColor,
           strokeOpacity: Math.min(0.3 + cluster.intensity * 0.05, 0.7),
           strokeWeight: 2,
           clickable: true,

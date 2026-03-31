@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AlertCircle, AlertTriangle } from 'lucide-react';
-import { getIconSvg } from './icons';
+import { getIconSvg, REASON_LABELS } from './icons';
 
 interface ReportButtonProps {
   onClick: () => void;
@@ -61,27 +61,36 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({ visible, onConfirm, 
           Select an optional reason for the outage using the symbols below:
         </p>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', margin: '0 0 24px' }}>
-          <button 
-            onClick={() => setSelectedReason(r => r === 'vehicle' ? null : 'vehicle')}
-            style={{ padding: '12px', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s', border: `3px solid ${selectedReason === 'vehicle' ? 'var(--color-accent)' : 'transparent'}`, background: '#000000' }}
-            dangerouslySetInnerHTML={{ __html: getIconSvg('vehicle', 32) }}
-          />
-          <button 
-            onClick={() => setSelectedReason(r => r === 'maintenance' ? null : 'maintenance')}
-            style={{ padding: '12px', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s', border: `3px solid ${selectedReason === 'maintenance' ? 'var(--color-accent)' : 'transparent'}`, background: '#000000' }}
-            dangerouslySetInnerHTML={{ __html: getIconSvg('maintenance', 32) }}
-          />
-          <button 
-            onClick={() => setSelectedReason(r => r === 'animal' ? null : 'animal')}
-            style={{ padding: '12px', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s', border: `3px solid ${selectedReason === 'animal' ? 'var(--color-accent)' : 'transparent'}`, background: '#000000' }}
-            dangerouslySetInnerHTML={{ __html: getIconSvg('animal', 32) }}
-          />
-          <button 
-            onClick={() => setSelectedReason(r => r === 'tree' ? null : 'tree')}
-            style={{ padding: '12px', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s', border: `3px solid ${selectedReason === 'tree' ? 'var(--color-accent)' : 'transparent'}`, background: '#000000' }}
-            dangerouslySetInnerHTML={{ __html: getIconSvg('tree', 32) }}
-          />
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', margin: '0 0 24px' }}>
+          {(['vehicle', 'maintenance', 'animal', 'tree'] as const).map((key) => {
+            const selected = selectedReason === key;
+            return (
+              <div key={key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', cursor: 'pointer' }}
+                onClick={() => setSelectedReason(r => r === key ? null : key)}>
+                <div
+                  style={{
+                    padding: '10px',
+                    borderRadius: '10px',
+                    border: `2.5px solid ${selected ? 'var(--color-accent)' : 'transparent'}`,
+                    background: selected ? 'var(--color-accent)' : '#1a1a1a',
+                    transition: 'all 0.2s',
+                    boxShadow: selected ? '0 0 10px rgba(0,122,165,0.4)' : 'none',
+                  }}
+                  dangerouslySetInnerHTML={{ __html: getIconSvg(key, 28) }}
+                />
+                <span style={{
+                  fontSize: '10px',
+                  fontWeight: 600,
+                  color: selected ? 'var(--color-accent)' : 'var(--color-text-secondary)',
+                  textAlign: 'center',
+                  lineHeight: 1.2,
+                  maxWidth: '56px',
+                }}>
+                  {REASON_LABELS[key]}
+                </span>
+              </div>
+            );
+          })}
         </div>
 
         <div style={{ marginBottom: '24px', textAlign: 'left' }}>

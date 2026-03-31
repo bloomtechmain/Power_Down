@@ -1,21 +1,40 @@
+const S = `fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"`;
+
 export const REASON_ICONS_INNER: Record<string, string> = {
+  // Car with crash X marks
   vehicle: `
-    <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a2 2 0 0 0-1.6-.8H9.3a2 2 0 0 0-1.6.8L5 11l-5.16.86a1 1 0 0 0-.84.99V16h3m10 0a2 2 0 1 0-4 0m-6 0a2 2 0 1 0-4 0" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path ${S} d="M5 11l2-5h10l2 5"/>
+    <rect ${S} x="2" y="11" width="20" height="6" rx="1"/>
+    <circle ${S} cx="7" cy="17" r="2"/>
+    <circle ${S} cx="17" cy="17" r="2"/>
+    <line ${S} x1="20" y1="4" x2="22" y2="6"/>
+    <line ${S} x1="22" y1="4" x2="20" y2="6"/>
+    <line ${S} x1="10" y1="14" x2="14" y2="14"/>
   `,
+  // Wrench
   maintenance: `
-    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path ${S} d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
   `,
+  // Paw print
   animal: `
-    <path d="M11 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0Z" fill="#ffffff"/>
-    <path d="M20 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0Z" fill="#ffffff"/>
-    <path d="M7 16a1 1 0 1 0-2 0 1 1 0 0 0 2 0Z" fill="#ffffff"/>
-    <path d="M18 16a1 1 0 1 0-2 0 1 1 0 0 0 2 0Z" fill="#ffffff"/>
-    <path d="M11.52 18.21A4 4 0 0 1 9.49 20H15a4.01 4.01 0 0 1-2.12-1.78l-1.36-2z" fill="#ffffff"/>
+    <circle cx="9" cy="9" r="2" fill="#ffffff"/>
+    <circle cx="15" cy="9" r="2" fill="#ffffff"/>
+    <circle cx="6" cy="13" r="1.5" fill="#ffffff"/>
+    <circle cx="18" cy="13" r="1.5" fill="#ffffff"/>
+    <path fill="#ffffff" d="M12 22c-3.5 0-6-1.8-6-4 0-1.5 1-2.8 2.5-3.3.7-.3 1.4-.9 1.8-1.8.4-.8.9-1.2 1.7-1.2s1.3.4 1.7 1.2c.4.9 1.1 1.5 1.8 1.8C17 15.2 18 16.5 18 18c0 2.2-2.5 4-6 4z"/>
   `,
+  // Cloud with lightning bolt
   tree: `
-    <path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12 22v-3" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  `
+    <path ${S} d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+    <polyline ${S} points="13 11 9 17 15 17 11 23"/>
+  `,
+};
+
+export const REASON_LABELS: Record<string, string> = {
+  vehicle: 'Vehicle Crash',
+  maintenance: 'Maintenance',
+  animal: 'Animal Damage',
+  tree: 'Natural Disaster',
 };
 
 export const getIconSvg = (reason: string, size: number = 24) => {
