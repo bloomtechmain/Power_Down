@@ -22,7 +22,7 @@ const App: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showMyReports, setShowMyReports] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [showOverview, setShowOverview] = useState(true);
+  const [showOverview, setShowOverview] = useState(false);
   const [showStatsDashboard, setShowStatsDashboard] = useState(false);
   const [heatmapVisible, setHeatmapVisible] = useState(true);
   const mapRef = React.useRef<MapViewRef>(null);
