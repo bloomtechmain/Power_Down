@@ -52,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({ user, onToast, onOpenMyReports, 
             </div>
           </div>
           <span style={{ fontSize: '12px', color: 'var(--color-text-secondary)', marginTop: '3px' }}>
-            Powered by <a href="https://bloomtech.lk" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-electric)', textDecoration: 'none' }}>Bloomtech.lk</a>
+            Powered by <a href="https://www.bloomswiftpos.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-electric)', textDecoration: 'none' }}>Bloomtech.lk</a>
           </span>
         </div>
       </div>
