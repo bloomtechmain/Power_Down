@@ -8,7 +8,8 @@ interface ReportButtonProps {
 
 export const ReportButton: React.FC<ReportButtonProps> = ({ onClick }) => {
   return (
-    <div className="report-fab" id="report-fab">
+    <div className="report-fab" id="report-fab" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+      <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.4px', color: '#fff', borderRadius: '999px', padding: '4px 14px', background: 'var(--color-danger)' }}>Add Report</span>
       <button
         className="report-fab-btn"
         id="report-fab-btn"
