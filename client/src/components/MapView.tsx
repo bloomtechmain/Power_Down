@@ -180,7 +180,7 @@ export const MapView = forwardRef<MapViewRef, MapViewProps>(({ position, cluster
 
       let circle: google.maps.Circle | null = null;
       if (heatmapVisible) {
-        const isMaintenance = cluster.reasons.length > 0 && cluster.reasons.every(r => r === 'maintenance');
+        const isMaintenance = cluster.reasons?.length > 0 && cluster.reasons.every(r => r === 'maintenance');
         const circleColor = isMaintenance ? '#facc15' : '#ef4444';
         circle = new google.maps.Circle({
           map,
